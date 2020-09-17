@@ -10,14 +10,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var selectedImage: String? // Valittu kuvatiedosto TVC:stä
+    var selectedImage: String? // Valittu kuvatiedoston nimi TVC:stä
     
     @IBOutlet var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /// Tarkistetaan 'if let' metodilla, että valitun solun alla on oikeasti kuva joka voidaan näyttää ja jos ei niin metodi ei tee mitään.
         if let imageToLoad = selectedImage {
+        /// Jos arvo löydetään laitetaan se imageToLoad:n näytettäväksi UIImage metodin kautta
             imageView.image = UIImage(named: imageToLoad)
         }
     }

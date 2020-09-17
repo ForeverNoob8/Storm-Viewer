@@ -55,9 +55,15 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    /// Tämä metodi lataa DetailViewControllerin SB:stä käyttäen metodia 'instantiateViewController'
+    /// UIViewController on typecastattava DetailViewControlleriksi toimiakseen
+    /// Alla vaiheittain:
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+        /// 1. Yritä ladata "Detail" view controller ja typecastata se DetailViewControlleriksi
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController { // perus VC on typecastattava 'as?'- metodilla, DetailViewControlleriksi jotta metodi toimii
+        /// 2. Valitse painetun solun mukaan näytettävä tiedosto pictures arraysta
             vc.selectedImage = pictures[indexPath.row]
+        /// 3. työnnetään valittu kuva navigation controlleriin (NC:n)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
